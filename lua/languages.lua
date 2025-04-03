@@ -1,0 +1,18 @@
+return {
+  'lua',
+  'nim',
+  'bash',
+  'c',
+  'clojure',
+  'cpp',
+  'go',
+  'python',
+  'rust',
+  'scheme',
+  'vim',
+  'zig',
+  'org',
+  'markdown',
+  'make',
+  'typst'
+}
