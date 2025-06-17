@@ -1,0 +1,6 @@
+{
+    "diagnostics.globals": [
+        "compile_command_string",
+        "compile_function"
+    ]
+}
