@@ -28,6 +28,12 @@ return {
 			mode = { "n" },
 			desc = "switch to light mode",
 		},
+		{
+			"<leader>qL",
+			"<cmd>set background=dark<CR>",
+			mode = { "n" },
+			desc = "switch to light mode",
+		},
 
 		{ "<leader>ss", "<cmd>mksession! .session<CR>", mode = { "n" }, desc = "Save Session" },
 		{ "<leader>sl", "<cmd>source .session<CR>", mode = { "n" }, desc = "Load Session" },

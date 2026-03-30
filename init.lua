@@ -10,8 +10,8 @@ require("manager")
 -------------------------------------------------------------------------------
 -- Options --------------------------------------------------------------------
 -------------------------------------------------------------------------------
+vim.g.neovide_opacity = 0.95
 vim.opt.cp = false
-vim.opt.guifont = "Iosevka Nerd Font:h15"
 vim.opt.clipboard = { "unnamedplus" }
 -- lualine is installed
 vim.opt.showmode = false
@@ -65,13 +65,13 @@ vim.opt.wildoptions = { "fuzzy", "pum", "tagfile" }
 -- vim.opt.tag = { "./tags", "tags"}
 --  :help omnifunc
 -- :help completion
+vim.opt.completeopt = {"fuzzy", "menu", "menuone", "popup", "noselect", "noinsert", "preview"}
 
 -------------------------------------------------------------------------------
 -- Variables ------------------------------------------------------------------
 -------------------------------------------------------------------------------
-vim.g.neovide_opacity = 0.90
-vim.g.transparency = 0.9
 vim.g.markdown_fenced_languages = require("languages")
+vim.g.asciidoctor_fenced_languages = require("languages")
 vim.g.vim_markdown_auto_insert_bullets = 0
 vim.g.vim_markdown_new_list_item_indent = 2
 vim.g.markdown_recommended_style = 0
@@ -82,8 +82,6 @@ vim.g.vim_markdown_toc_autofit = 0
 vim.g.ft_man_open_mode = "tab"
 vim.g.asynrun_open = true
 
-vim.g.asciidoctor_fenced_languages = require("languages")
-
 -------------------------------------------------------------------------------
 -- Autocmds -------------------------------------------------------------------
 -------------------------------------------------------------------------------
@@ -92,37 +90,9 @@ vim.cmd([[au FileType rust,vimscript set mps+=<:>]])
 vim.cmd([[au FileType lisp,scheme set mps-=':']])
 vim.cmd([[au BufWinEnter *.sls set ft=scheme]])
 vim.cmd([[au BufWinEnter Akku.manifest set ft=scheme]])
-vim.cmd("colorscheme gruvbox")
+
+vim.cmd"colorscheme everforest"
 
 -------------------------------------------------------------------------------
 -- LSP ------------------------------------------------------------------------
 -------------------------------------------------------------------------------
-vim.lsp.enable("lua-language-server")
-vim.lsp.enable("clangd")
-vim.diagnostic.config({
-	virtual_text = { current_line = true },
-})
-
-vim.api.nvim_create_autocmd("LspAttach", {
-	desc = "LSP actions",
-	callback = function(event)
-		local opts = { buffer = event.buf }
-		local client = vim.lsp.get_client_by_id(event.data.client_id)
-		if client:supports_method("textDocument/completion") then
-			vim.lsp.completion.enable(true, client.id, event.buf, { autotrigger = false })
-		end
-
-		vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
-		vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", opts)
-		vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", opts)
-		vim.keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", opts)
-		vim.keymap.set("n", "go", "<cmd>lua vim.lsp.buf.type_definition()<cr>", opts)
-		vim.keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", opts)
-		vim.keymap.set("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts)
-		vim.keymap.set("n", "<F2>", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
-		vim.keymap.set({ "n", "x" }, "<F3>", "<cmd>lua vim.lsp.buf.format({async = true})<cr>", opts)
-		vim.keymap.set("n", "<F4>", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
-		vim.keymap.set("n", "<F5>", "<cmd>lua vim.diagnostic.enable(false)<cr>", opts)
-		vim.keymap.set("n", "<F6>", "<cmd>lua vim.diagnostic.enable(true)<cr>", opts)
-	end,
-})
