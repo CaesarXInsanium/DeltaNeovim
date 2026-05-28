@@ -7,37 +7,43 @@ return {
 	config = function()
 		require("nvim-treesitter").install({
 			"bash",
-			"c",
-			"diff",
+
 			"elm",
-			"html",
 			"haskell",
-			"javascript",
-			"jsdoc",
-			"json",
-			"jsonc",
-			"lua",
-			"luadoc",
-			"luap",
-			"markdown",
-			"markdown_inline",
 			"printf",
+
 			"scheme",
 			"clojure",
 			"commonlisp",
+
+			"c",
+			"c3",
 			"hare",
 			"odin",
 			"nim",
+			"zig",
+
+			"lua",
+			"luadoc",
+			"luap",
 			"python",
-			"query",
-			"regex",
 			"toml",
 			"tsx",
 			"typescript",
+
 			"vim",
 			"vimdoc",
+
+			"diff",
+			"query",
+			"regex",
 			"xml",
 			"yaml",
+			"html",
+
+			"typst",
+			"markdown",
+			"markdown_inline",
 		})
 	end,
 }

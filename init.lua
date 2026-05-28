@@ -90,9 +90,10 @@ vim.cmd([[au FileType rust,vimscript set mps+=<:>]])
 vim.cmd([[au FileType lisp,scheme set mps-=':']])
 vim.cmd([[au BufWinEnter *.sls set ft=scheme]])
 vim.cmd([[au BufWinEnter Akku.manifest set ft=scheme]])
-
-vim.cmd"colorscheme everforest"
-
--------------------------------------------------------------------------------
--- LSP ------------------------------------------------------------------------
--------------------------------------------------------------------------------
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*",
+  callback = function(args)
+    require("conform").format({ bufnr = args.buf })
+  end,
+})
+vim.cmd"colorscheme ayu-dark"
