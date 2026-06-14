@@ -47,7 +47,7 @@ vim.opt.backupext = ".bak"
 
 vim.opt.colorcolumn = { 80 }
 vim.opt.cursorline = true
-vim.opt.cursorcolumn = true
+vim.opt.cursorcolumn = false
 vim.opt.ruler = true
 
 -- vim.opt.conceallevel = 2
@@ -65,7 +65,7 @@ vim.opt.wildoptions = { "fuzzy", "pum", "tagfile" }
 -- vim.opt.tag = { "./tags", "tags"}
 --  :help omnifunc
 -- :help completion
-vim.opt.completeopt = {"fuzzy", "menu", "menuone", "popup", "noselect", "noinsert", "preview"}
+vim.opt.completeopt = { "fuzzy", "menu", "menuone", "popup", "noselect", "noinsert", "preview" }
 
 -------------------------------------------------------------------------------
 -- Variables ------------------------------------------------------------------
@@ -79,7 +79,6 @@ vim.g.markdown_folding = 0
 vim.g.vim_markdown_conceal = 1
 -- disable stupid Toc shrinking
 vim.g.vim_markdown_toc_autofit = 0
-vim.g.ft_man_open_mode = "tab"
 vim.g.asynrun_open = true
 
 -------------------------------------------------------------------------------
@@ -91,9 +90,15 @@ vim.cmd([[au FileType lisp,scheme set mps-=':']])
 vim.cmd([[au BufWinEnter *.sls set ft=scheme]])
 vim.cmd([[au BufWinEnter Akku.manifest set ft=scheme]])
 vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = "*",
-  callback = function(args)
-    require("conform").format({ bufnr = args.buf })
-  end,
+	pattern = "*",
+	callback = function(args)
+		require("conform").format({ bufnr = args.buf })
+	end,
 })
-vim.cmd"colorscheme ayu-dark"
+vim.cmd("colorscheme ayu-dark")
+
+-------------------------------------------------------------------------------
+-- Treesitter -----------------------------------------------------------------
+-------------------------------------------------------------------------------
+
+-- vim.treesitter.language.add("python", { path = "/path/to/python.so" })
