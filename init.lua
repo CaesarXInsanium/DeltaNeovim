@@ -96,9 +96,18 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 	end,
 })
 vim.cmd("colorscheme ayu-dark")
+vim.g.c_syntax_for_h = 0
 
 -------------------------------------------------------------------------------
 -- Treesitter -----------------------------------------------------------------
 -------------------------------------------------------------------------------
 
 -- vim.treesitter.language.add("python", { path = "/path/to/python.so" })
+
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "c",
+	callback = function(ev)
+		vim.treesitter.start(ev.buf, "c")
+		vim.bo[ev.buf].syntax = "ON" -- only if additional legacy syntax is needed
+	end,
+})
