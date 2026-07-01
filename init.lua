@@ -10,7 +10,7 @@ require("manager")
 -------------------------------------------------------------------------------
 -- Options --------------------------------------------------------------------
 -------------------------------------------------------------------------------
-vim.g.neovide_opacity = 0.90
+vim.g.neovide_opacity = 0.97
 vim.opt.cp = false
 vim.opt.clipboard = { "unnamedplus" }
 -- lualine is installed
@@ -70,15 +70,7 @@ vim.opt.completeopt = { "fuzzy", "menu", "menuone", "popup", "noselect", "noinse
 -------------------------------------------------------------------------------
 -- Variables ------------------------------------------------------------------
 -------------------------------------------------------------------------------
-vim.g.markdown_fenced_languages = require("languages")
 vim.g.asciidoctor_fenced_languages = require("languages")
-vim.g.vim_markdown_auto_insert_bullets = 0
-vim.g.vim_markdown_new_list_item_indent = 2
-vim.g.markdown_recommended_style = 0
-vim.g.markdown_folding = 0
-vim.g.vim_markdown_conceal = 1
--- disable stupid Toc shrinking
-vim.g.vim_markdown_toc_autofit = 0
 vim.g.asynrun_open = true
 
 -------------------------------------------------------------------------------
@@ -89,6 +81,7 @@ vim.cmd([[au FileType rust,vimscript set mps+=<:>]])
 vim.cmd([[au FileType lisp,scheme set mps-=':']])
 vim.cmd([[au BufWinEnter *.sls set ft=scheme]])
 vim.cmd([[au BufWinEnter Akku.manifest set ft=scheme]])
+
 vim.api.nvim_create_autocmd("BufWritePre", {
 	pattern = "*",
 	callback = function(args)
