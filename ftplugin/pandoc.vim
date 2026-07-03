@@ -1,0 +1,9 @@
+setlocal foldenable
+setlocal conceallevel=1
+setlocal spell
+setlocal textwidth=80
+setlocal colorcolumn=80
+setlocal nonu
+setlocal shiftwidth=2
+setlocal tabstop=2
+setlocal softtabstop=2

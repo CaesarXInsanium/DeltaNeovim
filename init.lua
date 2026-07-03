@@ -1,10 +1,15 @@
 -- help docs: lua-ref, nvim-manual, lua-guide
--- TODO sdas
+-------------------------------------------------------------------------------
+-- Before Plugins --------------------------------------------------------------------
+-------------------------------------------------------------------------------
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 -------------------------------------------------------------------------------
 -- Plugins --------------------------------------------------------------------
 -------------------------------------------------------------------------------
 vim.g.mapleader = " "
 vim.g.localleader = " "
+
 require("manager")
 -- retarded
 -------------------------------------------------------------------------------
@@ -66,12 +71,15 @@ vim.opt.wildoptions = { "fuzzy", "pum", "tagfile" }
 --  :help omnifunc
 -- :help completion
 vim.opt.completeopt = { "fuzzy", "menu", "menuone", "popup", "noselect", "noinsert", "preview" }
+vim.opt.laststatus = 3
 
 -------------------------------------------------------------------------------
 -- Variables ------------------------------------------------------------------
 -------------------------------------------------------------------------------
 vim.g.asciidoctor_fenced_languages = require("languages")
 vim.g.asynrun_open = true
+vim.g.c_syntax_for_h = 0
+vim.g.filetype_md = "pandoc"
 
 -------------------------------------------------------------------------------
 -- Autocmds -------------------------------------------------------------------
@@ -83,20 +91,19 @@ vim.cmd([[au BufWinEnter *.sls set ft=scheme]])
 vim.cmd([[au BufWinEnter Akku.manifest set ft=scheme]])
 
 vim.api.nvim_create_autocmd("BufWritePre", {
-	pattern = "*",
+	pattern = { "*.c", "*h", "*.rs" },
 	callback = function(args)
 		require("conform").format({ bufnr = args.buf })
 	end,
 })
-vim.cmd("colorscheme ayu-dark")
-vim.g.c_syntax_for_h = 0
+vim.cmd("colorscheme everforest")
 
 -------------------------------------------------------------------------------
 -- Treesitter -----------------------------------------------------------------
 -------------------------------------------------------------------------------
 
 -- vim.treesitter.language.add("python", { path = "/path/to/python.so" })
-
+vim.treesitter.language.register('markdown', {  'pandoc' })
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = "c",
 	callback = function(ev)

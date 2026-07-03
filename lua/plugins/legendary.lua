@@ -2,7 +2,7 @@ return {
 	"mrjones2014/legendary.nvim",
 	lazy = false,
 	keys = {
-		-- Here will Lie mostly built in features
+		-- Here will rely on mostly built in features
 		{
 			"<leader>qk",
 			"<cmd>Telescope keymaps<CR>",
