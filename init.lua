@@ -91,19 +91,21 @@ vim.cmd([[au BufWinEnter *.sls set ft=scheme]])
 vim.cmd([[au BufWinEnter Akku.manifest set ft=scheme]])
 
 vim.api.nvim_create_autocmd("BufWritePre", {
-	pattern = { "*.c", "*h", "*.rs" },
+	pattern = { "*.c", "*h", "*.rs", "*.lua", "*.nim" },
 	callback = function(args)
 		require("conform").format({ bufnr = args.buf })
 	end,
 })
-vim.cmd("colorscheme everforest")
-
+vim.cmd("colorscheme ayu-dark")
+if not vim.g.neovide then
+	vim.cmd("hi Normal ctermbg=NONE guibg=NONE")
+end
 -------------------------------------------------------------------------------
 -- Treesitter -----------------------------------------------------------------
 -------------------------------------------------------------------------------
 
 -- vim.treesitter.language.add("python", { path = "/path/to/python.so" })
-vim.treesitter.language.register('markdown', {  'pandoc' })
+vim.treesitter.language.register("markdown", { "pandoc" })
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = "c",
 	callback = function(ev)
